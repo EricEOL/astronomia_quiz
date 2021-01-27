@@ -32,7 +32,7 @@ export default function Home() {
         <QuizLogo />
         <Widget>
           <Widget.Header>
-            <h1>The lengend of zelda</h1>
+            <h1>Astronomia</h1>
           </Widget.Header>
           
           <Widget.Content>
