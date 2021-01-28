@@ -41,7 +41,7 @@ export default function App({ Component, pageProps }) {
         
           <meta name="description" content="Quiz sobre Astronomia" />
 
-          <meta property="og:image" content="https://i.ibb.co/W5qp6CG/site-image.jpg" key="ogimage" />
+          <meta property="og:image" content="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80" key="ogimage" />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://astronomia-quiz.ericeol.vercel.app/" />
           <meta property="og:title" content="Quiz sobre Astronomia" key="ogtitle" />
