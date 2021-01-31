@@ -39,6 +39,30 @@
            "Cerca de 123.200.000 km",
            "Cerca de 149.600.000 km" 
         ]
+      },
+      {
+        "image": "https://media.giphy.com/media/l0MYB89UFsVqLY5oc/giphy.gif",
+        "title": "Qual é a temperatura média de Vênus ?",
+        "description": "Lá é bem quente!",
+        "answer": 1,
+        "alternatives": [
+           "Por volta de 360°C",
+           "Por volta de 460°C",
+           "Por volta de 1060°C",
+           "Por volta de 160°C" 
+        ]
+      },
+      {
+        "image": "https://media.giphy.com/media/l0HlO4V8iCRME3i0g/giphy.gif",
+        "title": "Qual planeta está mais próximo do Sol ?",
+        "description": "Mesmo perto ainda é longe.",
+        "answer": 3,
+        "alternatives": [
+           "Marte",
+           "Vênus",
+           "Júpiter",
+           "Mercúrio" 
+        ]
       }
     ],
     "external": [

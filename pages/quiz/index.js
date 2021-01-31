@@ -33,7 +33,7 @@ function LoadingWidget() {
   )
 }
 
-function ResultWidget({ result, totalQuestions }) {
+function ResultWidget({ result, totalQuestions, name }) {
 
   return (
     <Widget>
@@ -74,11 +74,14 @@ function ResultWidget({ result, totalQuestions }) {
 
               return currentSum;
             }, 0))
+
+          localStorage.setItem('UserQuizAstronomy', name);
         }}>
           <Button>
             Retornar
             </Button>
         </Link>
+        <p style={{textAlign: 'center'}}>Seu nome vai aparecer na tela inicial :)</p>
       </Widget.Content>
     </Widget>
   )
@@ -175,13 +178,15 @@ const screenStates = {
   RESULT: 'RESULT',
 };
 
-export default function QuizPage() {
+export default function QuizPage(props) {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const [result, setResult] = React.useState([]);
   const totalQuestions = db.questions.length;
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
   const questionIndex = currentQuestion;
   const question = db.questions[questionIndex];
+
+  console.log(props.name);
 
   function addResult(results) {
     setResult([...result, results]);
@@ -220,7 +225,7 @@ export default function QuizPage() {
           />
         }
 
-        {screenState === screenStates.RESULT && <ResultWidget result={result} totalQuestions={totalQuestions} />}
+        {screenState === screenStates.RESULT && <ResultWidget result={result} totalQuestions={totalQuestions} name={props.name}/>}
 
       </QuizContainer>
     </QuizBackground>

@@ -19,9 +19,12 @@ export default function Home() {
   const [name, setName] = React.useState('');
 
   const [lastResultUser, setLastResultUser] = React.useState('');
+  const [lastUser, setLastUser] = React.useState('');
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     setLastResultUser(localStorage.getItem('ResultQuizAstronomy'));
+    setLastUser(localStorage.getItem('UserQuizAstronomy'));
+
   }, []);
 
   return (
@@ -31,7 +34,7 @@ export default function Home() {
         <Widget
           as={motion.section}
           variants={{
-            show: { opacity: 1, y: '0'},
+            show: { opacity: 1, y: '0' },
             hidden: { opacity: 0, y: '100%' }
           }}
           initial="hidden"
@@ -61,17 +64,26 @@ export default function Home() {
               <Button type="submit" disabled={name.length === 0}>{`Jogar ${name}`}</Button>
             </form>
 
-            <Widget.Topic style={{ marginTop: '15px' }}>
-              {`Acertos do último jogador:  ${lastResultUser}`}
-            </Widget.Topic>
-          
+            {lastResultUser &&
+              <>
+                <Widget.Header style={{ marginTop: '15px'}}>
+                  <h1>Acertos do último jogador:</h1>
+                </Widget.Header>
+                <Widget.Topic style={{ cursor: 'auto' }}>
+                  <p>{`Jogador: ${lastUser}`}</p>
+                  <p>{`Pontos: ${lastResultUser}`}</p>
+                </Widget.Topic>
+              </>
+            }
+
+
           </Widget.Content>
 
         </Widget>
 
         <Widget
           as={motion.section}
-          transition={{duration: 1.0}}
+          transition={{ duration: 1.0 }}
           variants={{
             show: { opacity: 1 },
             hidden: { opacity: 0 }
@@ -100,7 +112,7 @@ export default function Home() {
         </Widget>
         <Footer
           as={motion.section}
-          transition={{duration: 2.0}}
+          transition={{ duration: 2.0 }}
           variants={{
             show: { opacity: 1 },
             hidden: { opacity: 0 }
