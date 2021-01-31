@@ -51,7 +51,6 @@ export default function Home() {
 
               router.push(`/quiz?name=${name}`);
 
-              console.log(name);
             }}>
 
               <Input

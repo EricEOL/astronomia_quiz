@@ -42,7 +42,7 @@ function ResultWidget({ result, totalQuestions, name }) {
             </Widget.Header>
       <Widget.Content>
         <p>
-          {`Você acertou `}
+          {`${name}, você acertou `}
           {result.reduce((currentSum, currentValue) => {
 
             const isAcerto = currentValue === true;
@@ -186,8 +186,6 @@ export default function QuizPage(props) {
   const questionIndex = currentQuestion;
   const question = db.questions[questionIndex];
 
-  console.log(props.name);
-
   function addResult(results) {
     setResult([...result, results]);
   }
@@ -195,7 +193,7 @@ export default function QuizPage(props) {
   React.useEffect(() => {
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
-    }, 1 * 1000)
+    }, 2 * 1000)
   }, []);
 
   function handleSubmitQuiz() {
