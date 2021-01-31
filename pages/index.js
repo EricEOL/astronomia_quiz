@@ -18,6 +18,11 @@ export default function Home() {
 
   const [name, setName] = React.useState('');
 
+  const [lastResultUser, setLastResultUser] = React.useState('');
+
+  React.useEffect(()=>{
+    setLastResultUser(localStorage.getItem('ResultQuizAstronomy'));
+  }, []);
 
   return (
     <QuizBackground backgroundImage={db.bg}>
@@ -55,6 +60,11 @@ export default function Home() {
 
               <Button type="submit" disabled={name.length === 0}>{`Jogar ${name}`}</Button>
             </form>
+
+            <Widget.Topic style={{ marginTop: '15px' }}>
+              {`Acertos do último jogador:  ${lastResultUser}`}
+            </Widget.Topic>
+          
           </Widget.Content>
 
         </Widget>

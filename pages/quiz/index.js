@@ -7,6 +7,7 @@ import AlternativesForm from '../../src/components/AlternativesForm';
 import Button from '../../src/components/Button';
 import Loading from '../../src/components/Loading';
 import { motion } from 'framer-motion';
+import Link from '../../src/components/Link';
 
 function LoadingWidget() {
   return (
@@ -33,6 +34,7 @@ function LoadingWidget() {
 }
 
 function ResultWidget({ result, totalQuestions }) {
+
   return (
     <Widget>
       <Widget.Header>
@@ -59,6 +61,24 @@ function ResultWidget({ result, totalQuestions }) {
             </li>
           ))}
         </ul>
+
+        <Link href="/" onClick={() => {
+          localStorage.setItem('ResultQuizAstronomy',
+
+            result.reduce((currentSum, currentValue) => {
+
+              const isAcerto = currentValue === true;
+              if (isAcerto) {
+                return currentSum + 1;
+              }
+
+              return currentSum;
+            }, 0))
+        }}>
+          <Button>
+            Retornar
+            </Button>
+        </Link>
       </Widget.Content>
     </Widget>
   )
