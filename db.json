@@ -5,25 +5,39 @@
     "description": "Vamos testar nossos conhecimentos em astronomia e aprender um pouco mais JUNTOS!",
     "questions": [
       {
-        "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-        "title": "Como fazer um seletor por id via CSS?",
+        "image": "https://media.giphy.com/media/APq0WQXgQQrKFcBbjP/giphy.gif",
+        "title": "A terra se encontra entre que planetas do sistema solar?",
         "description": "Essa é pra aquecer",
-        "answer": 2,
+        "answer": 0,
         "alternatives": [
-          ".elemento",
-          "*elemento",
-          "#elemento",
-          "%elemento"
+          "Vênus e Marte",
+          "Vênus e Júpiter",
+          "Marte e Júpiter",
+          "Saturno e Urano"
         ]
       },
       {
-        "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-        "title": "Como fazer um background gradiente com css?",
+        "image": "https://media.giphy.com/media/4NPT1ipEUoiMo/giphy.gif",
+        "title": "A quantos anos atrás ocorreu a criação do Planeta Terra?",
         "description": "Faz tempo em haha",
-        "answer": 0,
+        "answer": 1,
         "alternatives": [
-           "background: linear-gradient(#e66465, #9198e5);",
-           "background: gradient(#e66465, #9198e5);"
+           "Entre 4 e 3 bilhões de anos",
+           "Mais de 4 bilhões de anos",
+           "Entre 3 e 2 bilhões de anos",
+           "Mais de 5 bilhões de anos"
+        ]
+      },
+      {
+        "image": "https://media.giphy.com/media/1lwtquKquRLGwFAQVU/giphy.gif",
+        "title": "Qual é a distância aproximada entre a Terra e o Sol ?",
+        "description": "Distância enorme...",
+        "answer": 3,
+        "alternatives": [
+           "Cerca de 100.000 km",
+           "Cerca de 300.800.000 km",
+           "Cerca de 123.200.000 km",
+           "Cerca de 149.600.000 km" 
         ]
       }
     ],
