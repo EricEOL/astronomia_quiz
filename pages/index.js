@@ -1,5 +1,6 @@
 import db from '../db.json';
 import Widget from '../src/components/Widget';
+import Link from '../src/components/Link';
 import QuizLogo from '../src/components/QuizLogo';
 import QuizBackground from '../src/components/QuizBackground';
 import QuizContainer from '../src/components/QuizContainer';
@@ -9,11 +10,12 @@ import Input from '../src/components/Input';
 import Button from '../src/components/Button';
 
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 export default function Home() {
 
   const router = useRouter()
-  
+
   const [name, setName] = React.useState('');
 
 
@@ -21,13 +23,21 @@ export default function Home() {
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
         <QuizLogo />
-        <Widget>
+        <Widget
+          as={motion.section}
+          variants={{
+            show: { opacity: 1, y: '0'},
+            hidden: { opacity: 0, y: '100%' }
+          }}
+          initial="hidden"
+          animate="show"
+        >
           <Widget.Header>
             <h1>Astronomia</h1>
           </Widget.Header>
-          
+
           <Widget.Content>
-            <form onSubmit={function(event){
+            <form onSubmit={function (event) {
               event.preventDefault();
 
 
@@ -36,10 +46,10 @@ export default function Home() {
               console.log(name);
             }}>
 
-              <Input 
-                onChange={function(event){
+              <Input
+                onChange={function (event) {
                   setName(event.target.value);
-              }} 
+                }}
                 type="name" name="user_name" placeholder="Preencha com seu nome" value={name}
               />
 
@@ -49,20 +59,47 @@ export default function Home() {
 
         </Widget>
 
-        <Widget>
+        <Widget
+          as={motion.section}
+          transition={{duration: 1.0}}
+          variants={{
+            show: { opacity: 1 },
+            hidden: { opacity: 0 }
+          }}
+          initial="hidden"
+          animate="show"
+        >
 
           <Widget.Header>
-              <h1>Quizes da Galera</h1>
+            <h1>Quizes da Galera</h1>
           </Widget.Header>
 
           <Widget.Content>
-            <p>ssssssssssssssssssssssssssssss</p>
+            <ul>
+              {db.external.map((link) => {
+
+                const [projectName, githubUser] = link.replace('https://', '').replace('.vercel.app', '').split('.');
+
+                return (
+                  <li key={projectName}><Widget.Topic as={Link} href={`/quiz/${projectName}___${githubUser}`}>{`${githubUser}/${projectName}`}</Widget.Topic></li>
+                )
+              })}
+            </ul>
           </Widget.Content>
 
         </Widget>
-        <Footer />
+        <Footer
+          as={motion.section}
+          transition={{duration: 2.0}}
+          variants={{
+            show: { opacity: 1 },
+            hidden: { opacity: 0 }
+          }}
+          initial="hidden"
+          animate="show"
+        />
       </QuizContainer>
-      <GitHubCorner projectUrl="https://github.com/ericeol"/>
+      <GitHubCorner projectUrl="https://github.com/ericeol" />
     </QuizBackground>
   )
 }

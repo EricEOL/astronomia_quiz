@@ -1,26 +1,38 @@
-import db from '../db.json';
-import Widget from '../src/components/Widget';
-import QuizLogo from '../src/components/QuizLogo';
-import QuizBackground from '../src/components/QuizBackground';
-import QuizContainer from '../src/components/QuizContainer';
-import AlternativesForm from '../src/components/AlternativesForm';
-import Button from '../src/components/Button';
-import { useRouter } from 'next/router';
+import db from '../../db.json';
+import Widget from '../../src/components/Widget';
+import QuizLogo from '../../src/components/QuizLogo';
+import QuizBackground from '../../src/components/QuizBackground';
+import QuizContainer from '../../src/components/QuizContainer';
+import AlternativesForm from '../../src/components/AlternativesForm';
+import Button from '../../src/components/Button';
+import Loading from '../../src/components/Loading';
+import { motion } from 'framer-motion';
 
 function LoadingWidget() {
   return (
-    <Widget>
-      <Widget.Header>
-        Carregando...
-            </Widget.Header>
-      <Widget.Content>
-        Preciso fazer o Loading aqui.
-            </Widget.Content>
-    </Widget>
+    <Loading
+      as={motion.section}
+      transition={{ duration: 1.0 }}
+      variants={{
+        show: { scale: 1.2, rotate: 360 },
+        hidden: { scale: 0, rotate: 0 }
+      }}
+      initial="hidden"
+      animate="show"
+
+    />
+    /*     <Widget>
+          <Widget.Header>
+            Carregando...
+                </Widget.Header>
+          <Widget.Content>
+            Preciso fazer o Loading aqui.
+                </Widget.Content>
+        </Widget> */
   )
 }
 
-function ResultWidget({result, totalQuestions}) {
+function ResultWidget({ result, totalQuestions }) {
   return (
     <Widget>
       <Widget.Header>
@@ -28,26 +40,25 @@ function ResultWidget({result, totalQuestions}) {
             </Widget.Header>
       <Widget.Content>
         <p>
-          Você acertou
-          {` `} 
-          {result.reduce((currentSum, currentValue)=> {
-          
+          {`Você acertou `}
+          {result.reduce((currentSum, currentValue) => {
+
             const isAcerto = currentValue === true;
-            if(isAcerto) {
-              return currentSum + 1;          
+            if (isAcerto) {
+              return currentSum + 1;
             }
 
             return currentSum;
-          }, 0)} 
+          }, 0)}
           {` das ${totalQuestions} perguntas.`}
         </p>
         <ul>
-        {result.map((questionResult, index)=>(
+          {result.map((questionResult, index) => (
             <li key={index}>
-              {`#${index + 1}: ${questionResult === true ? 'Acertou' : 'Errou'}`} 
+              {`#${index + 1}: ${questionResult === true ? 'Acertou' : 'Errou'}`}
             </li>
-        ))}
-       </ul>
+          ))}
+        </ul>
       </Widget.Content>
     </Widget>
   )
@@ -91,16 +102,16 @@ function QuestionWidget({ question, totalQuestions, questionIndex, onSubmit, add
 
           addResult(isCorrect);
 
-          setTimeout(()=>{
+          setTimeout(() => {
             setIsQuestionSubmited(false);
             setSelectedAlternative(undefined);
             onSubmit();
-          }, 1* 1000);
+          }, 1 * 1000);
 
         }}>
           {question.alternatives.map((alternative, alternativeIndex) => {
             const alternativeId = `alternative_${alternativeIndex}`;
-            
+
             const alternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR';
             const isSelected = selectedAlternative === alternativeIndex;
 
@@ -165,11 +176,11 @@ export default function QuizPage() {
   function handleSubmitQuiz() {
     const nextQuestion = currentQuestion + 1;
 
-      if (nextQuestion < totalQuestions) {
-        setCurrentQuestion(nextQuestion);
-      } else {
-        setScreenState(screenStates.RESULT);
-      }
+    if (nextQuestion < totalQuestions) {
+      setCurrentQuestion(nextQuestion);
+    } else {
+      setScreenState(screenStates.RESULT);
+    }
   }
 
   return (
@@ -194,4 +205,13 @@ export default function QuizPage() {
       </QuizContainer>
     </QuizBackground>
   )
+}
+
+export async function getServerSideProps(context) {
+
+  return {
+    props: {
+      name: context.query.name,
+    },
+  };
 }
